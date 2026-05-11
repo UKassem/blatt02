@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Java CI
 
 on:
   push:
@@ -9,20 +9,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repository auschecken
-        uses: actions/checkout@v3
+      - name: Code holen
+        uses: actions/checkout@v4
 
       - name: Java installieren
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Projekt bauen
+      - name: Build
         run: ./gradlew build
 
       - name: Tests ausführen
         run: ./gradlew test
 
-      - name: Formatierung prüfen
+      - name: Format prüfen
         run: ./gradlew check
